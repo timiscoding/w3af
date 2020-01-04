@@ -10,6 +10,7 @@ DOCKER_RUN = ('docker run'
               ' -v ~/.w3af:/root/.w3af'
               ' -v ~/w3af-shared:/root/w3af-shared'
               ' -p 44444:44444'
+              ' -p 22:22'
               ' andresriancho/w3af')
 
 
@@ -73,7 +74,7 @@ def connect_to_container(container_id, cmd, extra_ssh_flags=()):
         sys.exit(1)
 
     try:
-        ip_address = json.loads(cont_data)[0]['NetworkSettings']['IPAddress']
+        ip_address = 'localhost' #json.loads(cont_data)[0]['NetworkSettings']['IPAddress']
     except ValueError:
         print('Invalid JSON output from inspect command')
         sys.exit(1)
